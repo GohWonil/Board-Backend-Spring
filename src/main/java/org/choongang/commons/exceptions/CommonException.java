@@ -9,7 +9,7 @@ import java.util.Map;
 public class CommonException extends RuntimeException {
 
     private HttpStatus status;
-    private Map<String, List<String>> messages;
+    private Errors errors;
 
     public CommonException(String message) {
         this(message, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -23,7 +23,8 @@ public class CommonException extends RuntimeException {
     public CommonException(Errors errors, HttpStatus status) {
         this.status = status;
 
-        /* 커맨드 객체 검증 실패 -> Map<String, List<String>> -> messages */
+        this.errors = errors;
+
 
     }
 
@@ -35,5 +36,7 @@ public class CommonException extends RuntimeException {
         this.status = status;
     }
 
-
+    public Errors getErrors() {
+        return errors;
+    }
 }
