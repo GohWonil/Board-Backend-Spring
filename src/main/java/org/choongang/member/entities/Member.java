@@ -1,5 +1,6 @@
 package org.choongang.member.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +20,7 @@ public class Member extends Base {
     @Column(length=80, unique = true, nullable = false)
     private String email;
 
+    @JsonIgnore
     @Column(length=65, nullable = false)
     private String password;
 
@@ -29,6 +31,7 @@ public class Member extends Base {
     @Column(length=10, nullable = false)
     private Authority authority = Authority.USER;
 
+    @Column(name="_lock")
     private boolean lock;
     private boolean enable;
 }
